@@ -1,0 +1,162 @@
+
+<style>
+  h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .section{margin:2rem 0 1rem}
+  .section-title{font-size:16px;font-weight:500;color:var(--color-text-primary);margin:0 0 .75rem;padding-bottom:.5rem;border-bottom:.5px solid var(--color-border-tertiary)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem}
+  .metric-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center}
+  .metric-label{font-size:12px;color:var(--color-text-secondary);margin-bottom:.4rem}
+  .metric-val{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+  .metric-val.green{color:var(--color-text-success)}
+  .metric-val.red{color:var(--color-text-danger)}
+  .metric-val.info{color:var(--color-text-info)}
+  .badge{display:inline-block;font-size:11px;font-weight:500;padding:2px 8px;border-radius:4px;margin-left:6px;vertical-align:middle}
+  .badge.danger{background:var(--color-background-danger);color:var(--color-text-danger)}
+  .badge.success{background:var(--color-background-success);color:var(--color-text-success)}
+  .badge.info{background:var(--color-background-info);color:var(--color-text-info)}
+  .badge.warn{background:var(--color-background-warning);color:var(--color-text-warning)}
+  .bug-table{width:100%;border-collapse:collapse;font-size:13px}
+  .bug-table th{font-weight:500;font-size:12px;color:var(--color-text-secondary);text-align:left;padding:4px 8px;border-bottom:.5px solid var(--color-border-tertiary)}
+  .bug-table td{padding:5px 8px;border-bottom:.5px solid var(--color-border-tertiary)}
+  .bug-table tr:last-child td{border-bottom:none}
+  .bar-row{display:flex;align-items:center;gap:10px;margin:.4rem 0;font-size:13px}
+  .bar-label{width:110px;color:var(--color-text-secondary);text-align:right;flex-shrink:0}
+  .bar-track{flex:1;background:var(--color-background-secondary);border-radius:4px;height:20px;position:relative;overflow:hidden}
+  .bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-size:11px;font-weight:500;transition:width .8s ease;white-space:nowrap}
+  .bar-fill.blue{background:#378ADD22;color:var(--color-text-info)}
+  .bar-fill.green{background:#639922;color:#fff}
+  .bar-fill.amber{background:#BA7517;color:#fff}
+  .bar-fill.coral{background:#D85A30;color:#fff}
+  .bar-fill.teal{background:#1D9E75;color:#fff}
+  .bar-fill.muted{background:var(--color-background-secondary);border:.5px dashed var(--color-border-secondary);color:var(--color-text-secondary)}
+  .insight{border-left:3px solid var(--color-border-info);padding:.5rem .75rem;margin:.5rem 0;font-size:13px;color:var(--color-text-secondary);background:var(--color-background-info);border-radius:0 4px 4px 0}
+  .insight strong{color:var(--color-text-info)}
+  .warn-box{border-left:3px solid var(--color-border-danger);padding:.5rem .75rem;margin:.5rem 0;font-size:13px;color:var(--color-text-danger);background:var(--color-background-danger);border-radius:0 4px 4px 0}
+  .verdict{background:var(--color-background-success);border:.5px solid var(--color-border-success);border-radius:var(--border-radius-lg);padding:1.25rem;margin-top:1rem}
+  .verdict-title{font-size:15px;font-weight:500;color:var(--color-text-success);margin:0 0 .5rem}
+</style>
+
+<h2 class="sr-only">Deep analysis of horse racing betting strategy: bugs found, better probability estimation, and optimal allocation</h2>
+
+<div class="section">
+  <p class="section-title">Issues found in current code</p>
+  <div class="grid2">
+    <div class="card">
+      <p style="font-size:13px;font-weight:500;color:var(--color-text-danger);margin:0 0 .5rem">Bug 1: Wrong market fractions <span class="badge danger">critical</span></p>
+      <table class="bug-table">
+        <thead><tr><th>Horse</th><th>Code uses</th><th>Actual market</th><th>Delta</th></tr></thead>
+        <tbody id="mkt-table"></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <p style="font-size:13px;font-weight:500;color:var(--color-text-danger);margin:0 0 .5rem">Bug 2: Ignoring timing data <span class="badge danger">critical</span></p>
+      <div class="insight" style="margin-top:.5rem">
+        The CSV has <strong>finishing times for all 8 horses per race</strong>, not just the winner. The code only reads the <code>winner</code> column, discarding 87.5% of available information.
+      </div>
+      <p style="font-size:13px;font-weight:500;color:var(--color-text-danger);margin:.75rem 0 .5rem">Bug 3: Wrong optimization objective <span class="badge danger">critical</span></p>
+      <div class="insight">
+        Kelly maximizes <strong>compound log-wealth growth</strong>. But the score = <strong>average profit per race</strong> (fixed bets, not compounding). These require completely different strategies.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title">Win probabilities: frequency counting vs monte carlo from fitted distributions</p>
+  <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 1rem">Fitting Normal distributions to all 8 horses' lap times and running 10M Monte Carlo races gives more reliable estimates than counting wins in only 500 races. Correlations between horses are near zero, confirming independence.</p>
+  <div id="prob-bars"></div>
+</div>
+
+<div class="section">
+  <p class="section-title">Expected value with correct market fractions</p>
+  <div id="ev-bars"></div>
+  <div class="insight" style="margin-top:.75rem">The market severely underestimates <strong>Shadowfax</strong> (true 32.5% vs 8% implied) and <strong>Morningstar</strong> (32% vs 11%). These are the massive edges to exploit.</div>
+</div>
+
+<div class="section">
+  <p class="section-title">Strategy showdown: expected profit per race (simulated 100k races)</p>
+  <div id="strat-bars"></div>
+  <div class="warn-box" style="margin-top:.75rem"><strong>Key insight:</strong> E[profit/race] = Σ bᵢ × EVᵢ. This is linear in bets. The optimal solution is to put the entire £10,000 on the single horse with the highest EV — Shadowfax at +246%. Kelly is the right tool for compounding wealth, not for maximizing a fixed-bet average score.</div>
+</div>
+
+<div class="section">
+  <p class="section-title">Bet sizing comparison: kelly vs true multi-horse kelly vs linear optimum</p>
+  <div class="grid4" id="strat-cards"></div>
+</div>
+
+<div class="verdict">
+  <p class="verdict-title">Recommended submission</p>
+  <p style="font-size:13px;color:var(--color-text-success);margin:0">Bet <strong>£10,000 on Shadowfax</strong>. EV = +246%. True win probability ≈ 32.5% vs the market's 8.0% implied. Bootstrap 95% CI confirms positive EV holds even at the lower bound (29.8% true prob → +216% EV). Expected average profit per 10,000-race evaluation ≈ <strong>£24,500/race</strong>, roughly 2–3× any Kelly variant.</p>
+</div>
+
+<script>
+const horses=['Shadowfax','Iron Duke','Morningstar','Red Tide','Gallant Fox','Blue Streak','Copper Prince','Last Chance'];
+const codeMarket={Shadowfax:.10,'Iron Duke':.12,Morningstar:.15,'Red Tide':.08,'Gallant Fox':.11,'Blue Streak':.09,'Copper Prince':.20,'Last Chance':.15};
+const realMarket={Shadowfax:.08,'Iron Duke':.09,Morningstar:.11,'Red Tide':.13,'Gallant Fox':.14,'Blue Streak':.15,'Copper Prince':.14,'Last Chance':.16};
+const freqProb={Shadowfax:.356,'Iron Duke':.148,Morningstar:.328,'Red Tide':.054,'Gallant Fox':.056,'Blue Streak':.028,'Copper Prince':.020,'Last Chance':.010};
+const mcProb={Shadowfax:.3252,'Iron Duke':.1391,Morningstar:.3192,'Red Tide':.0664,'Gallant Fox':.0565,'Blue Streak':.0404,'Copper Prince':.0284,'Last Chance':.0242};
+
+// Bug table
+const tbody=document.getElementById('mkt-table');
+horses.forEach(h=>{
+  const cm=codeMarket[h],rm=realMarket[h],d=cm-rm;
+  const cls=Math.abs(d)>0.02?'color:var(--color-text-danger)':'color:var(--color-text-secondary)';
+  tbody.innerHTML+=`<tr><td>${h}</td><td>${(cm*100).toFixed(0)}%</td><td>${(rm*100).toFixed(0)}%</td><td style="${cls}">${d>0?'+':''}${(d*100).toFixed(0)}pp</td></tr>`;
+});
+
+// Probability bars
+const probDiv=document.getElementById('prob-bars');
+horses.forEach(h=>{
+  const f=freqProb[h],m=mcProb[h],maxP=.40;
+  probDiv.innerHTML+=`
+  <div style="margin-bottom:.6rem">
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:3px">${h}</div>
+    <div class="bar-row" style="margin:2px 0"><div class="bar-label">Freq (500 races)</div><div class="bar-track"><div class="bar-fill blue" style="width:${(f/maxP*100).toFixed(1)}%">${(f*100).toFixed(1)}%</div></div></div>
+    <div class="bar-row" style="margin:2px 0"><div class="bar-label">MC (10M sims)</div><div class="bar-track"><div class="bar-fill teal" style="width:${(m/maxP*100).toFixed(1)}%">${(m*100).toFixed(1)}%</div></div></div>
+  </div>`;
+});
+
+// EV bars
+const evDiv=document.getElementById('ev-bars');
+const maxEV=2.6;
+horses.forEach(h=>{
+  const p=mcProb[h],f=realMarket[h];
+  const ev=p*(0.85/f)-1;
+  const pct=Math.abs(ev)/maxEV*100;
+  const cls=ev>0?(ev>.5?'green':'teal'):'muted';
+  const sign=ev>0?'+':'';
+  evDiv.innerHTML+=`<div class="bar-row"><div class="bar-label">${h}</div><div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct.toFixed(1)}%">${sign}${(ev*100).toFixed(1)}%</div></div></div>`;
+});
+
+// Strategy bars
+const strats=[
+  ['Bugged code (wrong market)','£8,346','coral'],
+  ['Naive Kelly, correct market','£9,603','amber'],
+  ['True multi-horse Kelly','£12,489','blue'],
+  ['All-in Shadowfax (max EV)','£24,550','green']
+];
+const stratDiv=document.getElementById('strat-bars');
+const maxS=25000;
+strats.forEach(([label,val,cls])=>{
+  const num=parseInt(val.replace(/[£,]/g,''));
+  stratDiv.innerHTML+=`<div class="bar-row"><div class="bar-label" style="width:200px;text-align:right">${label}</div><div class="bar-track"><div class="bar-fill ${cls}" style="width:${(num/maxS*100).toFixed(1)}%">${val}/race</div></div></div>`;
+});
+
+// Strategy cards
+const stratCards=document.getElementById('strat-cards');
+const cards=[
+  ['Bugged code\n(wrong mkt)','£8,346','Shadowfax: £2,701\nMorningstar: £1,840\nIron Duke: £79','danger'],
+  ['Naive Kelly\n(correct mkt)','£9,603','Shadowfax: £2,551\nMorningstar: £2,188\nIron Duke: £370','warn'],
+  ['True multi-\nhorse Kelly','£12,489','Shadowfax: £3,702\nMorningstar: £2,208\nIron Duke: £471','info'],
+  ['All-in\nShadowfax','£24,550','Shadowfax: £10,000\nAll others: £0\n ','success']
+];
+cards.forEach(([title,ev,bets,cls])=>{
+  stratCards.innerHTML+=`<div class="card" style="border-color:var(--color-border-${cls})">
+    <p style="font-size:12px;font-weight:500;margin:0 0 .25rem">${title.replace(/\n/g,'<br>')}</p>
+    <p style="font-size:18px;font-weight:500;color:var(--color-text-${cls});margin:0 0 .5rem">${ev}/race</p>
+    <p style="font-size:11px;color:var(--color-text-secondary);margin:0;line-height:1.6">${bets.replace(/\n/g,'<br>')}</p>
+  </div>`;
+});
+</script>
