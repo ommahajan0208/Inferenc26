@@ -1,4 +1,8 @@
+from pathlib import Path
+
 import pandas as pd
+
+DATA_PATH = Path(__file__).with_name("race_data.csv")
 
 def calculate_betting_strategy():
     """
@@ -7,9 +11,9 @@ def calculate_betting_strategy():
     """
     # Step 1: Load and Analyze Data
     try:
-        race_data = pd.read_csv('race_data.csv')
+        race_data = pd.read_csv(DATA_PATH)
     except FileNotFoundError:
-        print("Error: 'race_data.csv' not found. Make sure the file is in the same directory.")
+        print(f"Error: data file not found at {DATA_PATH}")
         return
 
     total_races = len(race_data)
