@@ -122,6 +122,9 @@ def spectral_risk_objective(metrics: pd.DataFrame) -> float:
     return float(np.sum(spectral_weights * pnl))
 
 
+DEFAULT_HISTORY_CSV = Path(__file__).with_name("auction_history.csv")
+
+
 OBJECTIVES = [
     ObjectiveSpec(
         name="weighted_risk",
@@ -2039,7 +2042,7 @@ def print_block(title: str, content: str) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Advanced math experiments for strategy selection.")
-    parser.add_argument("--csv", type=Path, default=Path("auction_history.csv"))
+    parser.add_argument("--csv", type=Path, default=DEFAULT_HISTORY_CSV)
     parser.add_argument("--search-n", type=int, default=70_000)
     parser.add_argument("--eval-n", type=int, default=100_000)
     parser.add_argument("--eval-seeds", type=int, default=10)

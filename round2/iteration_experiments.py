@@ -411,7 +411,7 @@ def print_submission_table(title: str, table: pd.DataFrame) -> None:
 
 
 def main() -> None:
-    df = sim.load_history(Path("auction_history.csv"))
+    df = sim.load_history(Path(__file__).with_name("auction_history.csv"))
     full_models = sim.build_fill_models(df)
 
     base_formula = formula_table(ALPHA, INTERCEPT, BASE_HALF_SPREAD)
