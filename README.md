@@ -73,5 +73,16 @@ This repository includes visual diagrams and reference materials in `docs/images
 - [Technology stack, libraries, techniques, and references](docs/technologies.md)
 - [Engineering standards and repository conventions](docs/standards.md)
 
+## Competition Results
+
+### Round 1 Performance
+![Round 1 Results](docs/images/round1_round2/AfterRound1.png)
+
+### Round 2 Performance
+![Round 2 Results](docs/images/round1_round2/AfterRound2.png)
+
+### Final Leaderboard
+![Final Leaderboard](docs/images/round1_round2/final_leaderboard.png)
+
 ## License
 This project is licensed under the terms in [LICENSE](LICENSE).
