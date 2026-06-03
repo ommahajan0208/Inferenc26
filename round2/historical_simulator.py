@@ -36,6 +36,7 @@ TIE_TOL = 1e-9
 EDGE_BIN_UPPER_BOUNDS = np.array([0.0, 5.0, 10.0, 20.0, 40.0, 80.0, np.inf])
 SHRINKAGE_STRENGTH = 20.0
 OFFICIAL_SIGNALS = np.arange(0.0, 1000.0 + 50.0, 50.0)
+DEFAULT_HISTORY_CSV = Path(__file__).with_name("auction_history.csv")
 
 
 @dataclass(frozen=True)
@@ -428,7 +429,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Replay historical auction rounds against fixed house operators.",
     )
-    parser.add_argument("--csv", type=Path, default=Path("auction_history.csv"))
+    parser.add_argument("--csv", type=Path, default=DEFAULT_HISTORY_CSV)
     parser.add_argument("--alpha", type=float, default=0.9709)
     parser.add_argument("--intercept", type=float, default=14.56)
     parser.add_argument("--half-spread", type=float, default=90.0)

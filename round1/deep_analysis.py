@@ -14,12 +14,15 @@ Techniques applied:
 
 import pandas as pd
 import numpy as np
+from pathlib import Path
 from scipy import stats
 
 np.random.seed(42)
 
+DATA_PATH = Path(__file__).with_name("race_data.csv")
+
 # ── Data & constants ──────────────────────────────────────────────────────────
-df = pd.read_csv("race_data.csv")
+df = pd.read_csv(DATA_PATH)
 horses = ["Shadowfax","Iron Duke","Morningstar","Red Tide",
           "Gallant Fox","Blue Streak","Copper Prince","Last Chance"]
 market = {

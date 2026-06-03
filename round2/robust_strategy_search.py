@@ -31,6 +31,7 @@ SCENARIO_WEIGHTS = {
 MID_SHIFT_BOUNDS = (-120.0, 120.0)
 HALF_SPREAD_BOUNDS = (40.0, 240.0)
 OBJECTIVE_RISK_PENALTY = 0.5
+DEFAULT_HISTORY_CSV = Path(__file__).with_name("auction_history.csv")
 
 
 PUBLISHED_COORD_TABLE = pd.DataFrame(
@@ -585,7 +586,7 @@ def print_table(title: str, table: pd.DataFrame) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Robust final-score strategy search.")
-    parser.add_argument("--csv", type=Path, default=Path("auction_history.csv"))
+    parser.add_argument("--csv", type=Path, default=DEFAULT_HISTORY_CSV)
     parser.add_argument("--search-n", type=int, default=60_000)
     parser.add_argument("--eval-n", type=int, default=100_000)
     parser.add_argument("--eval-seeds", type=int, default=20)
