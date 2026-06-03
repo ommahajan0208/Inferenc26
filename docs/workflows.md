@@ -11,6 +11,8 @@ flowchart TD
   F --> G[Commit and review]
 ```
 
+See also: [`docs/images/workflows/dev_workflow.png`](images/workflows/dev_workflow.png)
+
 ## Round 2 Strategy Workflow
 ```mermaid
 flowchart TD
@@ -21,6 +23,8 @@ flowchart TD
   E --> F[Compare objective and risk metrics]
   F --> G[Publish recommended 21-point table]
 ```
+
+See also: [`docs/images/workflows/round2_strategy_workflow.png`](images/workflows/round2_strategy_workflow.png)
 
 ## Operational Commands
 - Compile-time checks: `make validate`

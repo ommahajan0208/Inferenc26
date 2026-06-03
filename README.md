@@ -28,6 +28,10 @@ Inferenc26/
 │   ├── workflows.md
 │   ├── technologies.md
 │   ├── standards.md
+│   ├── images/               # Visual diagrams and reference materials
+│   │   ├── architecture/
+│   │   ├── workflows/
+│   │   └── round1_round2/
 │   └── modules/
 │       ├── round1.md
 │       └── round2.md
@@ -56,6 +60,12 @@ Inferenc26/
 ## Architecture and Workflow Diagrams
 - [System architecture and data-flow diagrams](docs/architecture.md)
 - [Operational workflows](docs/workflows.md)
+
+## Visual Documentation
+This repository includes visual diagrams and reference materials in `docs/images/`:
+- **Architecture diagrams**: System architecture, component relationships, and data flows
+- **Workflow diagrams**: Development and operational workflows for both rounds
+- **Round 1 & 2 materials**: Strategy-specific visualizations and analysis outputs
 
 ## Technical Documentation Index
 - [Round 1 module documentation](docs/modules/round1.md)

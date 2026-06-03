@@ -18,6 +18,8 @@ flowchart TD
   J --> K[Competition Submission]
 ```
 
+See also: [`docs/images/architecture/system_architecture.png`](images/architecture/system_architecture.png)
+
 ## Data-Flow Diagram
 ```mermaid
 flowchart LR
@@ -33,6 +35,8 @@ flowchart LR
   RS --> TBL
   AM --> TBL
 ```
+
+See also: [`docs/images/architecture/dataflow_diagram.png`](images/architecture/dataflow_diagram.png)
 
 ## Architectural Notes
 - Round 1 is a deterministic EV/Kelly workflow.
