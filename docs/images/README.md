@@ -22,7 +22,9 @@ Development workflow diagrams, operational procedures, and execution flow visual
 Strategy-specific visualizations, analysis outputs, and competition-related materials.
 
 **Contents:**
-- Strategy-specific diagrams and visualizations for Round 1 and Round 2
+- `AfterRound1.png` - Round 1 competition results and performance metrics
+- `AfterRound2.png` - Round 2 competition results and strategy performance
+- `final_leaderboard.png` - Final competition leaderboard showing rankings and outcomes
 
 ## Image Naming Conventions
 

@@ -74,3 +74,10 @@ Remaining Cash: £5,379.21
 *   **Morningstar** was also found to be a strong bet, with a true probability of 32.8% against the market's 15.0%. The recommended bet is **£1,840.00**.
 *   **Iron Duke** presented a much smaller, but still positive, edge. The model suggests a small bet of **£79.45**.
 *   The total capital allocated to bets is **£4,620.79**, leaving **£5,379.21** of the portfolio in reserve, as dictated by the Kelly Criterion for optimal risk management.
+
+## 5. Round 1 Competition Results
+
+**Competition Username:** @ommahajan0208  
+**Final Ranking:** 17th Place | Total Score: 2202.96
+
+![Round 1 Competition Results](../docs/images/round1_round2/AfterRound1.png)

@@ -100,3 +100,17 @@ When updating:
 - `python historical_simulator.py --self-test`
 - `python -m py_compile` (all modules)
 - `python advanced_math_experiments.py --run-next-steps --eval-seeds 20 --eval-n 100000`
+
+## Round 2 Competition Results
+
+### Final Ranking
+**Username:** @ommahajan0208  
+**Final Rank:** 17th Place  
+**Total Score:** 2202.96  
+**Rounds Completed:** 3/3
+
+### Round 2 Strategy Performance
+![Round 2 Competition Results](../docs/images/round1_round2/AfterRound2.png)
+
+### Final Leaderboard
+![Final Leaderboard](../docs/images/round1_round2/final_leaderboard.png)
