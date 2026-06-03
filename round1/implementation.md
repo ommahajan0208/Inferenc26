@@ -77,4 +77,7 @@ Remaining Cash: £5,379.21
 
 ## 5. Round 1 Competition Results
 
+**Competition Username:** @ommahajan0208  
+**Final Ranking:** 17th Place | Total Score: 2202.96
+
 ![Round 1 Competition Results](../docs/images/round1_round2/AfterRound1.png)

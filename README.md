@@ -75,6 +75,10 @@ This repository includes visual diagrams and reference materials in `docs/images
 
 ## Competition Results
 
+**Final Ranking: 17th Place | Total Score: 2202.96**
+
+The strategy successfully completed all three rounds (Round 1, Round 2, and Round 3) of the competition under the username **@ommahajan0208**.
+
 ### Round 1 Performance
 ![Round 1 Results](docs/images/round1_round2/AfterRound1.png)
 

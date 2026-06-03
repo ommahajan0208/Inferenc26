@@ -103,6 +103,12 @@ When updating:
 
 ## Round 2 Competition Results
 
+### Final Ranking
+**Username:** @ommahajan0208  
+**Final Rank:** 17th Place  
+**Total Score:** 2202.96  
+**Rounds Completed:** 3/3
+
 ### Round 2 Strategy Performance
 ![Round 2 Competition Results](../docs/images/round1_round2/AfterRound2.png)
 
